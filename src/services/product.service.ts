@@ -8,12 +8,10 @@ import { ServiceResponse } from '../types/ServiceResponse';
 async function createProduct(
   product: ProductInputtableTypes,
 ): Promise<ServiceResponse<Product>> {
-  let responseService: ServiceResponse<Product>;
-
   const newProduct = await ProductModel.create(product);
   const { orderId, ...response } = newProduct.dataValues;
-  // eslint-disable-next-line prefer-const
-  responseService = { status: 'SUCCESSFUL', data: response };
+
+  const responseService: ServiceResponse<Product> = { status: 'SUCCESSFUL', data: response };
   return responseService;
 }
 export default {
