@@ -9,7 +9,6 @@ async function getOrdersAll(): Promise<ServiceResponse<Order[]>> {
     as: 'productIds',
     attributes: ['id'],
   } });
-  // console.log(orders);
  
   const response = orders.map((order) => {
     const productIds = order.dataValues.productIds?.map((o) => (o as unknown as Order).id).sort();
