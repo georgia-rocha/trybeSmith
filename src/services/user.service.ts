@@ -22,7 +22,6 @@ async function verifyLogin(login: User): Promise<ServiceResponse<Token>> {
     login.password,
     foundUser?.dataValues.password as string,
   );
-  // console.log(returnDecode);
   
   if (foundUser && returnDecode) {
     const { id, username } = foundUser.dataValues;
