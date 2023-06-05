@@ -27,7 +27,7 @@ async function createOrder(
 ): Promise<ServiceResponse<Order>> {
   const { userId, productIds } = order;
   const newOrder = await OrderModel.create({ userId });
-  console.log(newOrder);
+  // console.log(newOrder);
   
   if (productIds) {
     const updateProducts = productIds
