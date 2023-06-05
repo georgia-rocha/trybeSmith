@@ -1,10 +1,10 @@
-# :construction: README em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto.
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+# Boas vindas ao repositório do projeto Trybesmith
+
+## Requisitos 100%
+
+- [x] 1 - Criei um endpoint para o cadastro de produtos e os testes das funcionalidades deste endpoint;
+- [x] 2 - Criei um endpoint para a listagem de produtos e testes das funcionalidades deste endpoint;
+- [x] 3 - Criei um endpoint para listar todos os pedidos e testes das funcionalidades deste endpoint;
+- [x] 4 - Criei um endpoint para o login de pessoas usuárias e testes das funcionalidades deste endpoint;
+- [x] 5 - Criei as validações dos produtos e testes das funcionalidades deste endpoint;
+- [x] 6 - Criei um endpoint para o cadastro de um pedido e testes das funcionalidades deste endpoint;
