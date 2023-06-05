@@ -11,8 +11,9 @@ async function getOrdersAll(): Promise<ServiceResponse<Order[]>> {
   } });
  
   const response = orders.map((order) => {
-    const { productIds, userId, id } = order.dataValues;
-    
+    const { userId, id } = order.dataValues;
+    const productIds = order.dataValues
+      .productIds?.map((o) => (o as unknown as Order).id as number).sort();
     return {
       id,
       userId,
