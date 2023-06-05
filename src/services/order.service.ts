@@ -11,17 +11,37 @@ async function getOrdersAll(): Promise<ServiceResponse<Order[]>> {
   } });
  
   const response = orders.map((order) => {
-    const productIds = order.dataValues.productIds?.map((o) => (o as unknown as Order).id).sort();
+    const { productIds, userId, id } = order.dataValues;
     
     return {
-      id: order.dataValues.id,
-      userId: order.dataValues.userId,
+      id,
+      userId,
       productIds,
     };
   });
   return { status: 'SUCCESSFUL', data: response };
 }
 
+async function createOrder(
+  order: Order,
+): Promise<ServiceResponse<Order>> {
+  const { userId, productIds } = order;
+  const newOrder = await OrderModel.create({ userId });
+  console.log(newOrder);
+  
+  if (productIds) {
+    const updateProducts = productIds
+      .map((prod) => ProductModel
+        .update({ orderId: newOrder.dataValues.id }, { where: { id: prod } }));
+    await Promise.all(updateProducts);
+  }
+
+  const responseService: ServiceResponse<Order> = {
+    status: 'SUCCESSFUL', data: order };
+  return responseService;
+}
+
 export default {
   getOrdersAll,
+  createOrder,
 };

@@ -15,6 +15,21 @@ async function getOrderAll(req: Request, res: Response) {
   }
 }
 
+async function createOrder(req: Request, res: Response) {
+  try {
+    const order = req.body;
+    const serviceResponse = await OrderService.createOrder(order);
+    if (serviceResponse.status !== 'SUCCESSFUL') {
+      return res.status(mapStatusHTTP(serviceResponse.status)).json(serviceResponse.data);
+    }
+    return res.status(201).json(order);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json('Algo deu errado');
+  }
+}
+
 export default {
   getOrderAll,
+  createOrder,
 };
