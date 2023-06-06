@@ -74,7 +74,7 @@ cd trybeSmith
   ```
 
   > Rode o serviço `node` com o comando `docker-compose up -d`.
-  - Esse serviço irá inicializar um container chamado `trybeSmith`.
+  - Esse serviço irá inicializar um container chamado `trybesmith_api`.
   - A partir daqui você pode rodar o container via CLI ou abri-lo no VS Code.
 
   > Use o comando `docker exec -it trybesmith_api bash`.
@@ -92,6 +92,62 @@ cd trybeSmith
 </details>
 
 ## Descrição da aplicação
+
+  ```
+  - POST /login
+  ```
+ <details>
+    <summary>Exemplo de body para cadastro</summary>
+
+  ```
+  {
+    "username": "string",
+    "password": "string"
+  }
+  ```
+</details>
+
+<details>
+    <summary>Validações Necessárias para o Login</summary>
+  Se o login não tiver o campo "username", o resultado retornado deverá ser um status http `400` e
+  
+  ```
+  { "message": "\"username\" and \"password\" are required" }
+  ```
+
+  Se o login não tiver o campo "password", o resultado retornado deverá ser um status http 400 e
+
+  ```
+    { "message": "\"username\" and \"password\" are required" }
+  ```
+
+  Se o login tiver um username que não exista no banco de dados ele será considerado inválido e o resultado retornado deverá ser um status http 401 e
+
+  ```
+   { "message": "Username or password invalid" }
+  ```
+
+  Se o login tiver uma senha que não corresponda à senha salva no banco de dados, ela será considerada inválida e o resultado retornado deverá ser um status http 401 e
+
+  ```
+   { "message": "Username or password invalid" }
+  ```
+</details>
+
+<details>
+    <summary>Resposta com status code 200</summary>
+    
+  ```
+    {
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+    }
+  ```
+</details>
+
+ > Use o Token nos para fazer a autenticação passando ele no Headers da sua requisição como valor da chave  `authorization`.
+</br>
+</br>
+
  ```
  - POST /products
  ```
@@ -215,59 +271,7 @@ cd trybeSmith
 </br>
 </br>
 
-  ```
-  - POST /login
-  ```
- <details>
-    <summary>Exemplo de body para cadastro</summary>
-
-  ```
-  {
-    "username": "string",
-    "password": "string"
-  }
-  ```
-</details>
-
-<details>
-    <summary>Validações Necessárias para o Login</summary>
-  Se o login não tiver o campo "username", o resultado retornado deverá ser um status http `400` e
-  
-  ```
-  { "message": "\"username\" and \"password\" are required" }
-  ```
-
-  Se o login não tiver o campo "password", o resultado retornado deverá ser um status http 400 e
-
-  ```
-    { "message": "\"username\" and \"password\" are required" }
-  ```
-
-  Se o login tiver um username que não exista no banco de dados ele será considerado inválido e o resultado retornado deverá ser um status http 401 e
-
-  ```
-   { "message": "Username or password invalid" }
-  ```
-
-  Se o login tiver uma senha que não corresponda à senha salva no banco de dados, ela será considerada inválida e o resultado retornado deverá ser um status http 401 e
-
-  ```
-   { "message": "Username or password invalid" }
-  ```
-</details>
-
-<details>
-    <summary>Resposta com status code 200</summary>
-    
-  ```
-    {
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
-    }
-  ```
-</details>
-</br>
-</br>
-
+ 
 ```
   POST /orders
 ```
